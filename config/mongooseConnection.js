@@ -1,9 +1,12 @@
 const mongoose = require('mongoose')
+const dbgr = require("debug")("development:mongoose");
+const config = require("config")
+
 
 mongoose
-.connect("mongodb://127.0.0.1:27017/Packify")
-.then(function(){
-    console.log("connected");
+    .connect(`${config.get("MONGODB_URI")}/packify`)
+    .then(function(){
+    dbgr("connected");
 })
 .catch(function(err){
     console.log("error");
